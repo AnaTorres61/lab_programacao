@@ -1,30 +1,25 @@
-//Escreva um programa que copie uma string para outra usando ponteiros.
+//Programa que encontra o tamanho de uma string fornecida usando ponteiros.
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-void copiaString(char *, char *);
+#define TAM 30
+
+void tamanho(char *);
 
 int main(){
-  int tam;
-  char str1[]="Isso é uma string";
-  char str2[20];
+  char str[TAM];
 
-  copiaString(str1,str2);
+  puts("Digite um string:");
+  fgets(str, TAM, stdin);
+  str[strcspn(str, "\n")] = 0; //tirar ENTER
 
-  printf("%s",str2);
-
+  tamanho(str);
+  
   return 0;
 }
 
-void copiaString(char *string1, char *string2){
-  int i=0;
-  while(1){
-    *(string2+i) = *(string1+i);
-    i++;
-    if(*(string1+i)=='\0'){
-      *(string2+i) ='\0';
-      break;
-    }
-  }
+void tamanho(char *string){
+  printf("Tamanho da string = %lu\n", strlen(string));
 }
